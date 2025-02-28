@@ -1,2 +1,48 @@
-# Ignore all .idea folder contents
+# User-specific files
+.idea/
+.vscode/
+
+# Windows image file caches
+Thumbs.db
+Desktop.ini
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+*.pdb
+*.idb
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]eploy/
+[Dd]eployPublic/
+[Dd]ebug/
+[Dd]ebugFast/
+bin/
+obj/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# VS for Mac
+.vscode/
+
+# ASP.NET Core files
+wwwroot/
+
+# Rider
 .idea/
