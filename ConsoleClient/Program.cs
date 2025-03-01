@@ -5,15 +5,7 @@ public static class Program
     {
         while (true)
         {
-            Console.WriteLine("=== Головне меню ===");
-            Console.WriteLine("1. Додавання (+)");
-            Console.WriteLine("2. Віднімання (-)");
-            Console.WriteLine("3. Множення (*)");
-            Console.WriteLine("4. Ділення (/)");
-            Console.WriteLine("5. Піднесення до степеня (^)");
-            Console.WriteLine("6. Обчислення квадратного кореня (√)");
-            Console.WriteLine("7. Вихід із програми");
-            Console.Write("Оберіть опцію: ");
+            Console.Write(GetConsoleMenu());
 
             bool isOperationValid = Enum.TryParse(Console.ReadLine(), out ConsoleOperations operation) // "1" (string) == 1 -> AddTwoNumbers (Enum.ConsoleOperations) == 1
                         && Enum.IsDefined(operation);
@@ -74,5 +66,25 @@ public static class Program
                 Console.WriteLine($"Помилка: {ex.Message}\n");
             }
         }
+    }
+
+    private static string GetConsoleMenu()
+    {
+        var menu = "=== Головне меню ===\n";
+        menu = GetOptionsList(menu);
+        menu += "Оберіть опцію: ";
+
+        return menu;
+    }
+
+    private static string GetOptionsList(string options)
+    {
+        foreach (var operation in Enum.GetValues<ConsoleOperations>())
+        {
+            string formattedName = string.Concat(operation.ToString().Select(c => char.IsUpper(c) ? " " + c : c.ToString())).Trim();
+            options += $"{(int)operation}. {formattedName}\n";
+        }
+
+        return options;
     }
 }
