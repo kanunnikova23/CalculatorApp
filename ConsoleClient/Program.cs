@@ -1,6 +1,5 @@
 ﻿namespace ConsoleClient;
 public static class Program
-public static class ConsoleClient
 {
     private static void Main()
     {
@@ -37,14 +36,12 @@ public static class ConsoleClient
 
                 var result = input switch
                 {
-                    "1" => num1 + num2,
-                    "2" => num1 - num2,
-                    "3" => num1 * num2,
-                    "4" => num2 != 0 ? num1 / num2 : throw new DivideByZeroException("Помилка: ділення на нуль"),
-                    "5" => Math.Pow(num1, num2),
-                    "6" => num1 >= 0
-                        ? Math.Sqrt(num1)
-                        : throw new ArgumentException("Помилка: корінь з від’ємного числа"),
+                    "1" => BasicMathOperations.AddTwoNumbers(num1, num2),
+                    "2" => BasicMathOperations.SubstructTwoNumbers(num1, num2),
+                    "3" => BasicMathOperations.MultiplyTwoNumbers(num1, num2),
+                    "4" => BasicMathOperations.DivideTwoNumbers(num1, num2),
+                    "5" => BasicMathOperations.PowerNumber(num1, num2),
+                    "6" => BasicMathOperations.SqrtNumber(num1),
                     _ => throw new InvalidOperationException("Невірний вибір")
                 };
 
