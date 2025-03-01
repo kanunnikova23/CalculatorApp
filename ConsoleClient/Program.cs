@@ -47,7 +47,11 @@ public static class ConsoleClient
                         : throw new ArgumentException("Помилка: корінь з від’ємного числа"),
                     _ => throw new InvalidOperationException("Невірний вибір")
                 };
+
                 Console.WriteLine($"Результат: {result}\n");
+                Console.WriteLine("Натисніть будь-яку клавішу щоби продовжить");
+                _ = Console.ReadKey();
+                Console.Clear();
             }
             catch (Exception ex)
             {
