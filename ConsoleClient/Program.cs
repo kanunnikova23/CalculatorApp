@@ -15,34 +15,53 @@ public static class Program
             Console.WriteLine("7. Вихід із програми");
             Console.Write("Оберіть опцію: ");
 
-            var input = Console.ReadLine();
+            bool isOperationValid = Enum.TryParse(Console.ReadLine(), out ConsoleOperations operation) // "1" (string) == 1 -> AddTwoNumbers (Enum.ConsoleOperations) == 1
+                        && Enum.IsDefined(operation);
+
+            if (!isOperationValid)
+            {
+                Console.WriteLine("Невірна операція");
+                Console.WriteLine("Натисніть будь-яку клавішу щоби продовжить");
+                _ = Console.ReadKey();
+                Console.Clear();
+                continue;
+            }
+
+            if (operation == ConsoleOperations.Abort)
+            {
+                Console.WriteLine("bye!");
+                _ = Console.ReadKey();
+                break;
+            }
 
             if (input == "7") break;
             try
             {
                 double num1, num2 = 0;
-                if (input != "6")
+                if (operation == ConsoleOperations.SqrtNumber)
                 {
-                    Console.Write("Введіть перше число: ");
+                    Console.Write("Введіть число: ");
                     num1 = double.Parse(Console.ReadLine() ?? string.Empty);
                     Console.Write("Введіть друге число: ");
                     num2 = double.Parse(Console.ReadLine() ?? string.Empty);
                 }
                 else
                 {
-                    Console.Write("Введіть число: ");
+                    Console.Write("Введіть перше число: ");
                     num1 = double.Parse(Console.ReadLine() ?? string.Empty);
+                    Console.Write("Введіть друге число: ");
+                    num2 = double.Parse(Console.ReadLine() ?? string.Empty);
                 }
 
-                var result = input switch
+                var result = operation switch
                 {
-                    "1" => BasicMathOperations.AddTwoNumbers(num1, num2),
-                    "2" => BasicMathOperations.SubstructTwoNumbers(num1, num2),
-                    "3" => BasicMathOperations.MultiplyTwoNumbers(num1, num2),
-                    "4" => BasicMathOperations.DivideTwoNumbers(num1, num2),
-                    "5" => BasicMathOperations.PowerNumber(num1, num2),
-                    "6" => BasicMathOperations.SqrtNumber(num1),
-                    _ => throw new InvalidOperationException("Невірний вибір")
+                    ConsoleOperations.AddTwoNumbers => BasicMathOperations.AddTwoNumbers(num1, num2),
+                    ConsoleOperations.SubstractTwoNumbers => BasicMathOperations.SubstructTwoNumbers(num1, num2),
+                    ConsoleOperations.MultiplyTwoNumbers => BasicMathOperations.MultiplyTwoNumbers(num1, num2),
+                    ConsoleOperations.DivideTwoNumbers => BasicMathOperations.DivideTwoNumbers(num1, num2),
+                    ConsoleOperations.PowerNumber => BasicMathOperations.PowerNumber(num1, num2),
+                    ConsoleOperations.SqrtNumber => BasicMathOperations.SqrtNumber(num1),
+                    _ => throw new InvalidOperationException("Невідома операція")
                 };
 
                 Console.WriteLine($"Результат: {result}\n");
