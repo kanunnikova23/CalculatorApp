@@ -26,7 +26,6 @@ public static class Program
                 break;
             }
 
-            if (input == "7") break;
             try
             {
                 double num1, num2 = 0;
@@ -34,8 +33,6 @@ public static class Program
                 {
                     Console.Write("Введіть число: ");
                     num1 = double.Parse(Console.ReadLine() ?? string.Empty);
-                    Console.Write("Введіть друге число: ");
-                    num2 = double.Parse(Console.ReadLine() ?? string.Empty);
                 }
                 else
                 {
