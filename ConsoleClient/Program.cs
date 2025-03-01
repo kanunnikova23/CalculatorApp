@@ -1,5 +1,5 @@
 ﻿namespace ConsoleClient;
-
+public static class Program
 public static class ConsoleClient
 {
     private static void Main()
